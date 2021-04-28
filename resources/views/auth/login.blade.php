@@ -5,15 +5,30 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+        <a href="../../index2.html" class="h1"><b>Admin</b>Area</a>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Sign in to start your session</p>
-  
-        <form action="{{ __('Login') }}" method="post">
+        @if ($errors->has('email'))
+        <span class="label label-danger"
+        role="alert">
+        <strong>{{ $errors->first('email')
+        }}</strong>
+        </span>
+        <br>
+        @endif
+        @if ($errors->has('password'))
+        <span class="label label-danger"
+        role="alert">
+        <strong>{{ $errors->first('password')
+        }}</strong>
+        </span>
+        <br>
+        @endif
+        <form action="{{ route('login') }}" aria-label="{{ __('Login') }}" method="post">
           @csrf
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Email" value="{{ old('email') }}">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -21,7 +36,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -31,7 +46,7 @@
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">
-                <input type="checkbox" id="remember">
+                <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
                 <label for="remember">
                   Remember Me
                 </label>
@@ -56,7 +71,7 @@
         <!-- /.social-auth-links -->
   
         <p class="mb-1">
-          <a href="forgot-password.html">I forgot my password</a>
+          <a href="{{ route('password.request') }}">I forgot my password</a>
         </p>
         <p class="mb-0">
           <a href="register.html" class="text-center">Register a new membership</a>
