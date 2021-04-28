@@ -16,9 +16,9 @@ use App\Http\Controllers\Backend\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('admin')->group(function () {
+Route::prefix('lpadmin')->group(function () {
     Route::resource("users", UserController::class);
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/',[App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 });
 
 Auth::routes();
@@ -26,4 +26,4 @@ Auth::routes();
 Route::match(["GET", "POST"], "/register", function(){
     return redirect("/login");
 })->name("register");
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
