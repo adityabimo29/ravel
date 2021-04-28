@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("title") Home @endsection
+@section("title") Dashboard @endsection
 @section('content')
 <div class="card">
     <div class="card-header">

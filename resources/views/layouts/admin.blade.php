@@ -219,6 +219,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
+            <a href="{{ route("users.create") }}" class="nav-link" >
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Users
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <form action="{{route("logout")}}" method="POST" id="myLogout">
             @csrf
             <a href="javascript:;" class="nav-link" onclick="document.getElementById('myLogout').submit()">
